@@ -1,0 +1,44 @@
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+dialog {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 50rem; /* or whatever you like */
+  width: 90%; /* good for small screens */
+  max-height: calc(100vh - 40px); /* allow for some breathing room */
+  overflow: auto; /* make it scrollable if content is too big */
+  background-color: #c3b8cf;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+}
+fieldset {
+  border: 1px solid rgb(207, 204, 204);
+  padding: 0.5rem;
+  margin-top: 2rem;
+}
+.sinup {
+  width: 100%;
+  /* align-items: center; */
+  /* text-align: center; */
+}
+.sinup label {
+  text-align: right;
+}
+
+.legend-center {
+  margin: 0 auto;
+  position: relative;
+  top: -2.6rem;
+  left: 40%;
+  background-color: #c3b8cf;
+}

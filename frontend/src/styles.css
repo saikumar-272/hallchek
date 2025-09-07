@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  /* background: url("https://4kwallpapers.com/images/wallpapers/macos-big-sur-apple-layers-fluidic-colorful-dark-wwdc-2020-3840x2160-1432.jpg");
+   */
+  background-color: rgb(2, 21, 37);
+  /* background-size: cover; */
+  background-attachment: fixed;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Glassmorphism card effect */
+.card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.control-error {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: #df2828;
+  height: 0.5rem;
+  padding: 0.25rem 0 0 0;
+  height: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.control-error p {
+  margin: 0;
+}
+
+[formgroupname].ng-invalid.ng-touched.ng-dirty label,
+.control:has(.ng-invalid.ng-touched.ng-dirty) label {
+  color: #f98b75;
+}
+
+[formgroupname].ng-invalid.ng-touched.ng-dirty input,
+input.ng-invalid.ng-touched.ng-dirty {
+  background-color: #fbdcd6;
+  border-color: #f84e2c;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.custom-dialog-panel .mdc-dialog__surface {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  border: 0.5vmin inset rgba(219, 219, 219, 0.8);
+  border-radius: 3vmin;
+  box-shadow: 0 0.5vmin 1vmin rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  /* -webkit-backdrop-filter: blur(5px); */
+}
+
+.hallchekglassy {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  border: 0.5vmin inset rgba(219, 219, 219, 0.8);
+  border-radius: 3vmin;
+  box-shadow: 0 0.5vmin 1vmin rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+}

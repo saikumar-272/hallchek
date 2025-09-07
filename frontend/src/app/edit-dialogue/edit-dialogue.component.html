@@ -1,0 +1,114 @@
+<div class="dialogue-container">
+  <h4 class="text-white">Register Hall</h4>
+  <form id="form" [formGroup]="form" (ngSubmit)="onSave()">
+    <mat-form-field appearance="fill">
+      <mat-label>Full Name:</mat-label>
+      <input matInput name="fullName" formControlName="fullName" class="ml-2" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Mobile Number:</mat-label>
+      <input
+        matInput
+        name="mobileNumber"
+        formControlName="mobileNumber"
+        style="margin-left: 8px"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Hall Name:</mat-label>
+      <input matInput name="hallname" formControlName="hallname" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Hall Type:</mat-label>
+      <mat-select name="hallType" formControlName="hallType">
+        <mat-option value="ac">Ac Convention</mat-option>
+        <mat-option value="nonac">Non Ac</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Hall Category:</mat-label>
+      <mat-select
+        name="hallCategory"
+        id="hallCategory"
+        formControlName="hallCategory"
+      >
+        <mat-option value=""></mat-option>
+        <mat-option value="ac_convention">Ac Convention</mat-option>
+        <mat-option value="mini_convention">Mini Ac Convention</mat-option>
+        <mat-option value="functionhall">Function Hall</mat-option>
+        <mat-option value="mini_functionhall">Ac Convention</mat-option>
+        <mat-option value="form_house">Form House</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Parking Area:</mat-label>
+      <input matInput name="parkingArea" formControlName="parkingArea" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Hall Capacity:</mat-label>
+      <input matInput name="hallCapacity" formControlName="hallCapacity" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Hall Address:</mat-label>
+      <textarea
+        matInput
+        name="hallAddress"
+        formControlName="hallAddress"
+      ></textarea>
+    </mat-form-field>
+    <div class="file-upload-wrapper">
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="fileInput1.click()"
+      >
+        <mat-icon>upload</mat-icon>
+        Acceptance File
+      </button>
+      <span class="file-name text-white" *ngIf="acceptFile">{{
+        acceptFile.name
+      }}</span>
+      <input
+        #fileInput1
+        type="file"
+        name="acceptFile"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+    </div>
+    <div class="file-upload-wrapper">
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="fileInput.click()"
+      >
+        <mat-icon>upload</mat-icon>
+        Hall Image
+      </button>
+      <span class="file-name text-white" *ngIf="HallImage">{{
+        HallImage.name
+      }}</span>
+      <input
+        #fileInput
+        type="file"
+        name="HallImage"
+        accept=".jpg, .jpeg, .png"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+    </div>
+
+    <p class="file-return"></p>
+
+    <div mat-dialog-actions>
+      <button (click)="onCancel()" type="button" class="btn btn-danger mx-2">
+        Cancel
+      </button>
+      <button color="primary" type="submit" class="btn btn-success m-2">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

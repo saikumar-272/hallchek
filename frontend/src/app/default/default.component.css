@@ -1,0 +1,56 @@
+/* .p-carousel-content {
+  text-align: center;
+  align-items: center;
+} */
+.slide-container {
+  position: relative;
+  width: 100%;
+}
+
+.slide-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.slide-container .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent */
+  color: #fff;
+}
+
+.slide-container .overlay h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.slide-container .overlay p {
+  margin: 0;
+}
+.label {
+  font-weight: bold;
+  text-align: right;
+}
+
+.overlay {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  color: rgb(219, 220, 221);
+  font-family: "Helvetica", sans-serif;
+}
+
+.contentrow {
+  display: contents;
+  /* so grid works on children spans */
+}
+.details {
+  display: grid;
+  text-align: left;
+  grid-template-columns: max-content auto;
+  gap: 0.5rem 1rem;
+}

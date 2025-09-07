@@ -1,0 +1,50 @@
+<div class="loginFormDiv mb-2">
+  <h3 style="color: blueviolet" class="my-4 text-center">Sign-In /Sign Up</h3>
+  <form class="loginform" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group row mb-3">
+      <label for="mobileNumber" class="col-sm-5 col-form-label"
+        >Mobile Number :
+      </label>
+      <div class="col-sm-7">
+        <input
+          type="text"
+          name="mobileNumber"
+          id="mobileNumber"
+          maxlength="10"
+          minlength="10"
+          formControlName="mobileNumber"
+          ng-keypress="onlyDigits($event)"
+          placeholder="Enter Mobile Number"
+          class="form-control"
+          (keypress)="allowNumber($event)"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="password" class="col-sm-5 col-form-label">password : </label>
+      <div class="col-sm-7">
+        <input
+          type="text"
+          name="password"
+          id="password"
+          formControlName="password"
+          placeholder="Enter password"
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <button class="btn btn-primary w-100 my-3" style="text-align: center">
+      submit
+    </button>
+    @if (form.dirty && form.touched &&form.invalid) {
+
+    <p class="control-error">invalid login credentials</p>
+
+    }
+  </form>
+</div>
+<div class="linksDiv ml-30">
+  <a href="" style="color: #22e599">Forgot password</a>
+</div>

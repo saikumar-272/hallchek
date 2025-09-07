@@ -1,0 +1,27 @@
+.sinupFormDiv {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 40%;
+  margin-left: 30%;
+  align-items: center;
+  /* text-align: center; */
+}
+
+fieldset {
+  border: 1px solid rgb(207, 204, 204);
+  padding: 0.5rem;
+}
+.sinup {
+  width: 90%;
+  align-items: center;
+  /* text-align: center; */
+}
+.legend-center {
+  margin: 0 auto;
+  position: relative;
+  top: -2.6rem;
+  background-color: white;
+}

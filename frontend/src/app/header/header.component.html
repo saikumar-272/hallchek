@@ -1,0 +1,23 @@
+<div class="header row">
+  <div class="title fun col-8">
+    <h1>🎉 EventSpaces</h1>
+    <p>Find the perfect hall for your event</p>
+  </div>
+  <div class="col-4">
+    <nav>
+      @if (isActiveLogin()) {
+      <button (click)="logout()" class="btn btn-outline-secondary">
+        Logout
+      </button>
+      }@else if(isDefultCmp()){
+      <button (click)="registerSpace()" class="btn btn-primary">
+        Register My Space
+      </button>
+      <button (click)="userLogin()" class="btn btn-primary m-2">
+        User Login
+      </button>
+
+      }
+    </nav>
+  </div>
+</div>

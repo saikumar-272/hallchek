@@ -1,0 +1,52 @@
+/* .mat-mdc-table {
+  background: transparent;
+  color: antiquewhite;
+}
+
+
+.mat-mdc-paginator {
+  background: rgba(255, 255, 255, 0.1);
+  color: antiquewhite;
+}
+
+.mat-mdc-form-field {
+  background: rgba(255, 255, 255, 0.1);
+  color: antiquewhite;
+}
+.mat-mdc-text-field {
+  background: rgba(255, 255, 255, 0.1);
+  color: antiquewhite;
+}
+
+
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+  color: antiquewhite;
+}
+  .mat-mdc-table {
+  background: transparent;
+  color: antiquewhite;
+}
+ */
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+.mat-mdc-table {
+  max-width: 90%;
+}
+.table-container {
+  max-width: 90%;
+  display: block;
+  margin-left: 5%;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  /* border: 0.5vmin inset rgba(219, 219, 219, 0.8); */
+  /* color: antiquewhite; */
+}
+
+.mat-mdc-table-input {
+  width: 100%;
+  box-sizing: border-box; /* important! so padding/border don't overflow */
+}

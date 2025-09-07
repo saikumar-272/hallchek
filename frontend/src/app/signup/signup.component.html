@@ -1,0 +1,272 @@
+<div class="sinupFormDiv">
+  <h3 style="color: blueviolet" class="mb-4">Sign-Up</h3>
+  <form class="sinup" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group row mb-3">
+      <label for="fullName" class="col-sm-4 col-form-label">Name :</label>
+      <div class="col-sm-6">
+        <input
+          type="text"
+          name="fullName"
+          id="fullName"
+          formControlName="fullName"
+          placeholder="Please Enter Full Name"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="form-group row mb-3">
+      <label for="mobileNumber" class="col-sm-4 col-form-label"
+        >Enter Mobile Number :
+      </label>
+      <div class="col-sm-6">
+        <input
+          type="text"
+          name="mobileNumber"
+          id="mobileNumber"
+          maxlength="10"
+          minlength="10"
+          formControlName="mobileNumber"
+          ng-keypress="onlyDigits($event)"
+          placeholder="Enter Mobile Number"
+          class="form-control"
+          (keypress)="allowNumber($event)"
+        />
+      </div>
+    </div>
+    <div class="form-group row mb-3">
+      <label for="gender" class="col-sm-4 col-form-label"
+        >Select gender :
+      </label>
+      <div class="col-sm-6">
+        <select
+          name="gender"
+          id="gender"
+          class="form-control"
+          formControlName="gender"
+        >
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="trans">Trans-Gender</option>
+        </select>
+      </div>
+    </div>
+    <div formGroupName="passwords">
+      <div class="form-group row mb-3">
+        <label for="password" class="col-sm-4 col-form-label"
+          >Enter password :
+        </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            name="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter password"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="confirmpassword" class="col-sm-4 col-form-label"
+          >Confirm password :
+        </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            name="confirmpassword"
+            id="confirmpassword"
+            formControlName="confirmpassword"
+            placeholder="Confirm password"
+            class="form-control"
+          />
+        </div>
+      </div>
+    </div>
+
+    <fieldset class="border p-4 rounded position-relative">
+      <legend class="w-auto px-3 mx-auto text-primary fw-bold legend-center">
+        Enter hall details
+      </legend>
+      <div class="form-group row mb-3">
+        <label for="hallname" class="col-sm-4 col-form-label"
+          >Hall Name :</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            name="hallname"
+            id="hallname"
+            formControlName="hallname"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <p>Select hall type :</p>
+      <div class="row mb-3 px-3">
+        <div class="form-check col-sm-5">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="hallType"
+            formControlName="hallType"
+            value="nonac"
+            id="radioDefault1"
+          />
+          <label class="form-check-label" for="radioDefault1">
+            Non-Ac Hall
+          </label>
+        </div>
+        <div class="form-check col-sm-7">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="hallType"
+            formControlName="hallType"
+            value="ac"
+            id="radioDefault2"
+          />
+          <label class="form-check-label" for="radioDefault2">
+            Ac Convention
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group row mb-3">
+        <label for="hallCapacity" class="col-sm-4 col-form-label"
+          >Hall Capacity :</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            name="hallCapacity"
+            id="hallCapacity"
+            formControlName="hallCapacity"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="parkingArea" class="col-sm-4 col-form-label"
+          >Parking Area :
+        </label>
+        <div class="col-sm-8">
+          <input
+            type="text"
+            name="parkingArea"
+            id="parkingArea"
+            formControlName="parkingArea"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="hallAddress">Enter Address Details : </label>
+        <textarea
+          class="form-control"
+          id="hallAddress"
+          formControlName="hallAddress"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="state" class="col-sm-5 col-form-label"
+          >Select State :
+        </label>
+        <div class="col-sm-7">
+          <select
+            name="state"
+            id="state"
+            class="form-control"
+            formControlName="state"
+            (change)="loadDist($event)"
+          >
+            <option value="">Select</option>
+            @for (state of state_store; track state.state_code) {
+            <option value="{{ state.state_code }}">
+              {{ state.state_name | caseConvert : "capital" }}
+            </option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="district" class="col-sm-5 col-form-label"
+          >Select District :
+        </label>
+        <div class="col-sm-7">
+          <select
+            name="district"
+            id="district"
+            class="form-control"
+            formControlName="district"
+            (change)="loadMandal($event)"
+          >
+            <option value="">Select</option>
+
+            @for (district of district_store; track district.district_code) {
+            <option value="{{ district.district_code }}">
+              {{ district.district_name | caseConvert : "capital" }}
+            </option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="mandal" class="col-sm-5 col-form-label"
+          >Select Mandal :
+        </label>
+        <div class="col-sm-7">
+          <select
+            name="mandal"
+            id="mandal"
+            class="form-control"
+            formControlName="mandal"
+          >
+            <option value="">Select</option>
+
+            @for (mandal of mandal_store; track mandal.mandal_code) {
+            <option value="{{ mandal.mandal_code }}">
+              {{ mandal.mandal_name | caseConvert : "capital" }}
+            </option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="pincode" class="col-sm-5 col-form-label"
+          >Enter pincode :
+        </label>
+        <div class="col-sm-7">
+          <input
+            type="text"
+            placeholder="Enter pin-code"
+            class="form-control"
+            maxlength="6"
+            minlength="6"
+            name="pincode"
+            id="pincode"
+            formControlName="pincode"
+            (keypress)="allowNumber($event)"
+          />
+        </div>
+      </div>
+    </fieldset>
+    <button class="btn btn-primary w-100 mt-3" style="text-align: center">
+      submit
+    </button>
+    @if (form.dirty && form.touched &&form.invalid) {
+
+    <p class="control-error">invalid form data</p>
+
+    }
+  </form>
+  <br />
+  <a
+    href=""
+    [routerLink]="['/login']"
+    [queryParams]="{ login_type: 'partnerLogin', title: 'Partner Sign-In' }"
+    routerLinkActive="router-link-active"
+    style="color: #2522e5"
+    >Already Sign up? Login </a
+  ><br />
+</div>

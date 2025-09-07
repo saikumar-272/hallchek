@@ -1,0 +1,172 @@
+<div class="table-container">
+  <mat-form-field>
+    <!-- <mat-label>Filter</mat-label> -->
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search Here" />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <!-- Name fullName -->
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+      <!-- <td mat-cell *matCellDef="let user">{{ user.fullName }}</td>
+        -->
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div *ngIf="!user.isEdit">{{ user.fullName }}</div>
+        <input
+          *ngIf="user.isEdit"
+          [(ngModel)]="user.fullName"
+          style="width: 100%; box-sizing: border-box"
+        />
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mobileNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
+      <!-- <td mat-cell *matCellDef="let user">{{ user.mobileNumber }}</td> -->
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div *ngIf="!user.isEdit">{{ user.mobileNumber }}</div>
+        <input
+          *ngIf="user.isEdit"
+          [(ngModel)]="user.mobileNumber"
+          style="width: 100%; box-sizing: border-box"
+        /></td
+    ></ng-container>
+
+    <!-- hall fullName -->
+    <ng-container matColumnDef="hallname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Hall Name</th>
+      <!-- <td mat-cell *matCellDef="let user">{{ user.hallname }}</td> -->
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div *ngIf="!user.isEdit">{{ user.hallname }}</div>
+        <input
+          *ngIf="user.isEdit"
+          [(ngModel)]="user.hallname"
+          style="width: 100%; box-sizing: border-box"
+        />
+      </td>
+    </ng-container>
+
+    <!-- hallCapacity Column -->
+    <ng-container matColumnDef="hallCapacity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Hall Capacity</th>
+      <!-- <td mat-cell *matCellDef="let user">{{ user.hallCapacity }}</td> -->
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div *ngIf="!user.isEdit">{{ user.hallCapacity }}</div>
+        <input
+          *ngIf="user.isEdit"
+          [(ngModel)]="user.hallCapacity"
+          style="width: 100%; box-sizing: border-box"
+        />
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="parkingArea">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Parking Area</th>
+      <!-- <td mat-cell *matCellDef="let user">{{ user.parkingArea }}</td> -->
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div *ngIf="!user.isEdit">{{ user.parkingArea }}</div>
+        <input
+          *ngIf="user.isEdit"
+          [(ngModel)]="user.parkingArea"
+          style="width: 100%; box-sizing: border-box"
+        />
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="pincode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>pincode</th>
+      <!-- <td mat-cell *matCellDef="let user">{{ user.pincode }}</td> -->
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div *ngIf="!user.isEdit">{{ user.pincode }}</div>
+        <input
+          *ngIf="user.isEdit"
+          [(ngModel)]="user.pincode"
+          style="width: 100%; box-sizing: border-box"
+        />
+      </td>
+    </ng-container>
+
+    <!-- hallAddress Column -->
+    <ng-container matColumnDef="hallAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Hall Address</th>
+      <!-- <td mat-cell *matCellDef="let user">{{ user.hallAddress }}</td> -->
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div *ngIf="!user.isEdit">{{ user.hallAddress }}</div>
+        <textarea
+          *ngIf="user.isEdit"
+          [(ngModel)]="user.hallAddress"
+          style="width: 100%; box-sizing: border-box"
+        ></textarea>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hallType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Hall Type</th>
+      <!-- <td mat-cell *matCellDef="let user">
+        {{ user.hallType == "nonac" ? "Non Ac" : "Ac" }}
+      </td> -->
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div *ngIf="!user.isEdit">
+          {{ user.hallType == "nonac" ? "Non Ac" : "Ac" }}
+        </div>
+        <!-- <input *ngIf="user.isEdit" [(ngModel)]="user.hallType" /> -->
+        <select
+          *ngIf="user.isEdit"
+          [(ngModel)]="user.hallType"
+          style="width: 100%; box-sizing: border-box"
+        >
+          <option value="nonac">Non Ac</option>
+          <option value="ac">Ac</option>
+        </select>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let user">
+        <button >update</button>
+      </td>
+       <ng-container matColumnDef="actions"> -->
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let user; let i = index">
+        <div class="row">
+          <button
+            class="btn btn-primary"
+            *ngIf="!user.isEdit"
+            (click)="editRow(user)"
+          >
+            Edit
+          </button>
+        </div>
+
+        <div class="row d-flex flex-column">
+          <button
+            class="btn btn-success my-1"
+            *ngIf="user.isEdit"
+            (click)="OnUpdate(user)"
+          >
+            Save
+          </button>
+          <button
+            class="btn btn-danger"
+            *ngIf="user.isEdit"
+            (click)="cancelEdit(user)"
+          >
+            Cancel
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- </ng-container> -->
+
+    <!-- Header and Row declarations -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[2, 5, 8, 10]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

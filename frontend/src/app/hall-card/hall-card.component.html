@@ -1,0 +1,45 @@
+<mat-card
+  *ngFor="let hall of HallData"
+  class="col-lg-3 col-md-6 col-sm-12"
+  appearance="outlined"
+>
+  <mat-card-header>
+    <mat-card-title class="text-center">{{
+      hall.hallname | caseConvert : "capital"
+    }}</mat-card-title>
+    <!-- <mat-card-subtitle>{{hall.fullName}}</mat-card-subtitle> -->
+  </mat-card-header>
+  <img
+    mat-card-image
+    [src]="'http://localhost/hallchek/backend/' + hall.hall_image"
+    alt="Photo of Hall Image"
+    class="hall-image"
+  />
+  <!-- <h6 class="text-center w-100 mt-2">Hall Details</h6> -->
+  <mat-card-content class="details m-2">
+    <div class="contentrow">
+      <span class="label">Hall Type</span
+      ><span>: {{ hall.hallType == "nonac" ? "Non-Ac" : "Ac" }}</span>
+    </div>
+    <div class="contentrow">
+      <span class="label">Hall Capacity</span
+      ><span>: {{ hall.hallCapacity }}</span>
+    </div>
+    <div class="contentrow">
+      <span class="label">Hall parkingArea</span
+      ><span>: {{ hall.parkingArea }}</span>
+    </div>
+    <div class="contentrow">
+      <span class="label">Hall Address</span
+      ><span>: {{ hall.hallAddress }}</span>
+    </div>
+    <div class="contentrow">
+      <span class="label">Pincode</span><span>: {{ hall.pincode }}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="login($event)" class="btn btn-outline-primary">
+      show contact detail's/check availability
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,40 @@
+<p-carousel
+  [value]="slides"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="true"
+  [autoplayInterval]="3000"
+>
+  <ng-template let-slide pTemplate="item">
+    <div class="slide-container">
+      <img [src]="slide.image" />
+      <div class="overlay row">
+        <div class="col-lg-5">
+          <h2 class="mt-5">{{ slide.title }}</h2>
+          <p style="font-style: italic; font-size: 25px">
+            {{ slide.description }}
+          </p>
+        </div>
+        <div
+          class="col-lg-7"
+          style="display: flex; flex-direction: column; align-items: center"
+        >
+          <button class="btn btn-primary btn-lg" (click)="onLog()">
+            Partner Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
+
+<div>
+  <div *ngIf="fetching()">
+    <h3>Fetching Data Please wait...</h3>
+  </div>
+  <app-hall-card
+    [HallData]="hallData"
+    (select)="userLogin()"
+    class="container-fluid row justify-content-around m-3 card-parentdiv"
+  />
+</div>

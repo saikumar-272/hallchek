@@ -1,0 +1,8 @@
+.hall-image {
+  width: 100%;
+  padding: 5px;
+  aspect-ratio: 1 / 0.8; /* keeps height equal to width */
+  object-fit: cover; /* nicely crop/fit the image */
+  box-sizing: border-box; /* so padding doesn't overflow the card */
+  border-radius: 10px; /* optional: slight rounding */
+}

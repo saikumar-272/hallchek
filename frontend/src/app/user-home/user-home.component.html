@@ -1,0 +1,156 @@
+<div class="bg-white p-4 m-5 shadow" style="border-radius: 1em">
+  <form [formGroup]="form" class="row g-4" (ngSubmit)="Onsubmit()">
+    <!-- Text Input -->
+    <div class="col-12 col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>hall name/ region</mat-label>
+        <input
+          type="text"
+          placeholder="hall name/ region"
+          aria-label="hall name/ region"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option
+            *ngFor="let hall of filteredOptions | async"
+            [value]="hall"
+          >
+            {{ hall.filter_display | caseConvert : "lower" }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <!-- Date Picker -->
+    <div class="col-12 col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Choose a date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="DD-MM-YYYY"
+          [min]="minDate"
+          [max]="maxDate"
+          required
+          formControlName="selectedDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!-- Slot Select -->
+    <div class="col-12 col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Select Slot</mat-label>
+        <mat-select
+          placeholder="Select a slot"
+          required
+          formControlName="slot_id"
+        >
+          <mat-option *ngFor="let slot of slots" [value]="slot.slot_id">
+            {{ slot.slot_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Optional Submit Button -->
+    <div class="col-12 col-md-2">
+      <button
+        class="btn btn-outline-primary btn-lg w-100"
+        [disabled]="loading()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<div
+  *ngIf="gridEnable()"
+  class="bg-white p-4 m-5 shadow"
+  style="border-radius: 1em"
+>
+  <div *ngIf="loading()" class="d-flex align-items-center">
+    <strong>Loading...</strong>
+    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div
+        *ngFor="let place of AvailableHallData"
+        class="row m-2 border border-secondary rounded p-3"
+      >
+        <div class="col-md-4">
+          <img
+            [src]="'http://localhost/hallchek/backend/' + place.hall_image"
+            alt=""
+            width="100%"
+            class="rounded"
+            style="aspect-ratio: 1/0.8"
+          />
+        </div>
+        <div class="col-md-8 d-flex flex-column">
+          <h5 style="font-size: em">
+            {{ place.hallname | caseConvert : "capital" }}
+          </h5>
+          <span class="mb-2 text-secondary">
+            {{ place.hallAddress | caseConvert : "lower" }} , pincode:
+            {{ place.pincode }}
+          </span>
+          <span class="text-primary">
+            Contact Name: {{ place.fullName | caseConvert : "lower" }}
+          </span>
+          <p class="text-primary">
+            Contact Number:
+            {{ place.mobileNumber }}
+          </p>
+          <div class="mr-auto mb-2">
+            <span class="mr-4 mb-4"
+              ><span style="border: 1px solid white; background-color: green"
+                >&nbsp;&nbsp;&nbsp;&nbsp;</span
+              >
+              available</span
+            ><span class="m-4"
+              ><span style="border: 1px solid white; background-color: red"
+                >&nbsp;&nbsp;&nbsp;&nbsp;</span
+              >
+              booked</span
+            >
+          </div>
+          <div class="grid-container text-center mb-2">
+            <div *ngFor="let day of place.week_slots" class="grid-item">
+              <div class="mb-2">{{ day.date | date : "MMM d, y" }}</div>
+              <div
+                *ngFor="let slot of day.slots"
+                [ngClass]="{
+                  'custom-success-border custom-success-border:hover':
+                    slot.slot_status == 'available',
+                  'custom-danger-border': slot.slot_status == 'booked',
+                  'text-center mb-2': true,
+                  rounded: true
+                }"
+              >
+                {{ slot.slot_id == "1" ? "Morning" : "Evening" }}
+              </div>
+            </div>
+          </div>
+          <p>Rating: not rated yet</p>
+          <p>For pricing, please reach out in person</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngFor="let dayslot of place.week_slot | keyvalue" class="col">
+  <div>{{ dayslot.key }}</div>
+  <div *ngFor="let slot of dayslot.value">
+    <div>Slot ID: {{ slot.slot_id }}</div>
+    <div>Status: {{ slot.slot_status }}</div>
+  </div>
+</div> -->

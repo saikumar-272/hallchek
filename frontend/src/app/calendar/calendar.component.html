@@ -1,0 +1,157 @@
+<!-- calendar.component.html -->
+
+<div
+  class="container-fluid my-4 row justify-content-around align-items-center w-auto d-flex"
+>
+  <h2 class="text-white text-center col-sm-12 col-lg-12">Slot's Available</h2>
+  <div class="text-white text-center">
+    <span class="m-4"
+      ><span style="border: 1px solid white; background-color: green"
+        >&nbsp;&nbsp;&nbsp;&nbsp;</span
+      >
+      available</span
+    ><span class="m-4"
+      ><span style="border: 1px solid white" class="bgbooked"
+        >&nbsp;&nbsp;&nbsp;&nbsp;</span
+      >
+      booked</span
+    >
+    <span class="m-4"
+      ><span style="border: 1px solid white; background-color: yellow"
+        >&nbsp;&nbsp;&nbsp;&nbsp;</span
+      >
+      partially booked</span
+    >
+  </div>
+  <div class="row justify-content m-3">
+    <div *ngFor="let month of groupedDays" class="col-sm-6 col-sm-12 col-lg-4">
+      <h4 class="text-white text-white">
+        {{ month.days[0].date | date : "MMMM yyyy" }}
+      </h4>
+      <div class="calendar">
+        <div
+          *ngFor="let day of month.days"
+          [ngClass]="{
+        'bgavailable text-white': day.status === 'Available',
+        'bgpartial text-white': day.status === 'Partial',
+        'bgbooked text-white': day.status === 'Booked',
+      }"
+          class="calendar-date"
+          (click)="openSlotModal(day)"
+        >
+          {{ day.date | date : " dd" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="slotModal"
+  tabindex="-1"
+  aria-labelledby="slotModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Select Slot for {{ selectedDate | date : "MMM d, y" }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="bookSlot()">
+        <div class="modal-body">
+          <div *ngFor="let slot of totalSlots">
+            <label>
+              <input
+                type="radio"
+                [value]="slot.slot_id"
+                formControlName="slotradio"
+              />
+              {{ slot.slot_name }} ({{ slot.status }})
+            </label>
+          </div>
+          <div class="row" [hidden]="custDataHide()">
+            <div class="col-sm-6">
+              <label class="form-check-label">
+                Customer Name.
+                <input
+                  type="text"
+                  formControlName="customerName"
+                  class="form-control"
+                />
+              </label>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-check-label">
+                Customer Mobile No.
+                <input
+                  type="text"
+                  formControlName="customerMobileNo"
+                  class="form-control"
+                  (keypress)="allowNumber($event)"
+                />
+              </label>
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-check-label"
+                >Hall Rental Amount (₹):
+                <input
+                  type="number"
+                  formControlName="amount"
+                  class="form-control"
+                  (keypress)="allowNumber($event)"
+                />
+              </label>
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-check-label"
+                >Advance Amount Paid (if any) (₹):
+                <input
+                  type="number"
+                  formControlName="advance"
+                  class="form-control"
+                  (keypress)="allowNumber($event)"
+                />
+              </label>
+            </div>
+            <div class="col-sm-12">
+              <label class="form-check-label">
+                Remarks (if any):
+                <textarea
+                  formControlName="remarks"
+                  class="form-control"
+                ></textarea>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!selectedSlotId"
+          >
+            {{
+              selectedSlotStatus == "Available"
+                ? "Update as Booked"
+                : "update as Available"
+            }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- [disabled]="slot.status === 'Booked'" -->

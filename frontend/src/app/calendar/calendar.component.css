@@ -1,0 +1,36 @@
+/* calendar.component.css */
+
+.calendar {
+  width: 30%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-date {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+}
+
+.bgavailable {
+  background-color: green;
+}
+.bgpartial {
+  background-color: yellow;
+}
+.bgbooked {
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px inset rgba(219, 219, 219, 0.8);
+  /* border-radius: 3vmin; */
+  /* overflow: hidden; */
+  /* text-align: center; */
+  box-shadow: 0 0.5vmin 1vmin rgba(0, 0, 0, 0.4);
+}
+
+.bgbooked:hover {
+  z-index: 2;
+}

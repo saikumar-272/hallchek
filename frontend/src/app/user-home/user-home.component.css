@@ -1,0 +1,36 @@
+.slots-container {
+  /* width: 30%; */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.custom-success-border {
+  border: 1px solid green; /* Bootstrap's $success */
+  color: green;
+}
+.custom-success-border :hover {
+}
+
+.custom-danger-border {
+  border: 1px solid red; /* Bootstrap's $success */
+  color: red;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+@media (min-width: 992px) {
+  .grid-container {
+    grid-template-columns: repeat(7, 1fr); /* 7 columns on large screens */
+  }
+}
+
+/* .grid-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  } */
