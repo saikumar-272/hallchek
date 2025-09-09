@@ -284,7 +284,6 @@ export class CalendarComponent implements OnInit {
               alert(res.msg);
               const modalEl = document.getElementById('slotModal');
 
-              // ✅ Try to get an existing modal instance
               let modal = window.bootstrap.Modal.getInstance(modalEl);
               modal.hide();
               this.router
