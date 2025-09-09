@@ -113,7 +113,6 @@ export class CalendarComponent implements OnInit {
     if (!value) return null; // Optional
     return /^\d{10}$/.test(value) ? null : { invalidMobile: true };
   }
-
   ngOnInit(): void {
     const data = localStorage.getItem('userData');
     if (data) {
@@ -129,7 +128,6 @@ export class CalendarComponent implements OnInit {
         .subscribe((res) => {
           if (res.status == 'success') {
             // alert(res.status);
-
             this.generateCalendarDays(res.data);
             this.groupedDays = this.groupByMonth(this.calendarDays);
             console.log(this.groupedDays);
@@ -154,7 +152,7 @@ export class CalendarComponent implements OnInit {
       }
       groups[monthKey].push(day);
     });
-
+    console.log(groups);
     return Object.keys(groups).map((key) => ({
       month: key,
       days: groups[key],
@@ -244,6 +242,7 @@ export class CalendarComponent implements OnInit {
     const modal = new window.bootstrap.Modal(
       document.getElementById('slotModal')!
     );
+    console.log(modal);
     modal.show();
   }
 
@@ -278,10 +277,16 @@ export class CalendarComponent implements OnInit {
             }-${this.selectedDate?.getDate()}`,
             hall_id: this.hall_id,
             statustoUpdate: statustoUpdate,
+            customerData: JSON.stringify(this.form.value),
           })
           .subscribe((res) => {
             if (res.status === 'success') {
               alert(res.msg);
+              const modalEl = document.getElementById('slotModal');
+
+              // ✅ Try to get an existing modal instance
+              let modal = window.bootstrap.Modal.getInstance(modalEl);
+              modal.hide();
               this.router
                 .navigateByUrl('/', { skipLocationChange: true })
                 .then(() => {
